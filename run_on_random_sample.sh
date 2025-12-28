@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-python sort.py <(shuf -i 0-1000 -n $1)
+python sort.py <(shuf -i 0-10000 -n $1)
