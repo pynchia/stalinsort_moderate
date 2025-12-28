@@ -31,7 +31,7 @@ class StalinSort:
             else:
                 purged_elements.append(curr_el)
 
-        print(f"StalinSort\n {data=}\n {kept_elements=}\n {purged_elements=}")
+        # print(f"StalinSort\n {data=}\n {kept_elements=}\n {purged_elements=}")
         return kept_elements, purged_elements
 
 
@@ -45,7 +45,7 @@ class StalinSortModerated(StalinSort):
             self.sort(purged_elements, order),  # the sorted purged elements
             order,
         )
-        print(f"{merged=}")
+        # print(f"{merged=}")
         return merged
         
     @staticmethod
@@ -109,13 +109,9 @@ def main():
     data = [int(line) for line in data_file.read_text().splitlines()]
 
     sorted_data = StalinSortModerated().sort(data, sort_order)
+    for el in sorted_data:
+        print(el)
 
-
-    # for el in sorted_data:
-    #     print(el)
-
-    # kept_elements, purged_elements = StalinSort().sort(data, sort_order)
-    # print(f"{data=}\n{kept_elements=}\n{purged_elements=}")
 
 if __name__=="__main__":
     main()
