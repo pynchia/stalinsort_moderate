@@ -20,10 +20,10 @@ class StalinSort:
             the numbers that are in order
             the purged numbers
         """
-        operation = op.ge if order is SortOrder.asc else op.le
         kept_elements = []
         purged_elements = []
-        prec_el = -1
+        operation = op.ge if order is SortOrder.asc else op.le
+        prec_el = -1 if order is SortOrder.asc else 2**63
         for curr_el in data:
             if operation(curr_el, prec_el):  # in order
                 kept_elements.append(curr_el)
@@ -105,10 +105,13 @@ def main():
     if not data_file.exists():
         print(f"Error: data file {sys.argv[1]} does not exist")
         exit(-2)
-    sort_order = SortOrder(sys.argv[2]) if num_args == 2 else SortOrder.asc
     data = [int(line) for line in data_file.read_text().splitlines()]
+    sort_order = SortOrder(sys.argv[2]) if num_args == 2 else SortOrder.asc
 
+    # sorted_data, purged_data = StalinSort().sort(data, sort_order)
+    # print(f"{sorted_data=}\n{purged_data=}")
     sorted_data = StalinSortModerated().sort(data, sort_order)
+
     for el in sorted_data:
         print(el)
 
